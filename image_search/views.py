@@ -5,6 +5,7 @@ import urllib
 import json
 import cv2
 import os
+from search import Search
 
 @csrf_exempt
 def find_image(request):
@@ -24,9 +25,11 @@ def find_image(request):
 
         # work with an image
 
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        # image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-        data.update({"image_name": True})
+        Search.search(image)
+
+        data.update({"success": True, "image_name": True})
 
     return JsonResponse(data)
 
@@ -37,7 +40,7 @@ def _grab_image(path=None, stream=None, url=None):
 
     else:
         if url is not None:
-            resp = urllib.urlopen(url)
+            resp = urllib.request.urlopen(url)
             data = resp.read()
 
         elif stream is not None:

@@ -2,7 +2,7 @@ import numpy as np
 
 
 class Searcher:
-    def __index__(self, index):
+    def __init__(self, index):
         self.index = index
 
     def search(self, queryFeatures):

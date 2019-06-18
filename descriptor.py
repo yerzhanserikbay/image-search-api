@@ -12,7 +12,6 @@ class RGBHistogram:
 
         if imutils.is_cv2():
             hist = cv2.normalize(hist)
-
         else:
             hist = cv2.normalize(hist, hist)
 
